@@ -1,8 +1,8 @@
 <?php require 'app/views/layouts/header.php'; ?>
 
 <!-- USER STATS -->
-<div class="row mb-4">
-    <div class="col-md-3">
+<div class="row mb-4 g-4">
+    <div class="col-12 col-sm-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100 border-start border-4 border-primary">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100 border-start border-4 border-success">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100 border-start border-4 border-warning">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100 border-start border-4 border-danger">
             <div class="d-flex justify-content-between align-items-center">
                 <div>

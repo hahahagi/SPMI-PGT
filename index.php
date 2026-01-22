@@ -58,11 +58,13 @@ switch ($act) {
         if ($_SESSION['user']['role'] == 'admin') {
             $stats = get_dashboard_stats_admin($koneksi);
             $data_permintaan = get_all_permintaan($koneksi);
+            $page_title = 'Dashboard Admin';
             require 'app/views/admin/dashboard.php';
         } else {
             $stats = get_dashboard_stats_user($koneksi, $_SESSION['user']['id_user'], $_SESSION['user']['role']);
             $data_tugas = get_tugas_user($koneksi, $_SESSION['user']['role']);
             $data_files = get_files_user($koneksi, $_SESSION['user']['id_user']);
+            $page_title = 'Dashboard User';
             require 'app/views/user/dashboard.php';
         }
         break;
@@ -99,6 +101,7 @@ switch ($act) {
 
         $info = $data['info'];
         $files = $data['files'];
+        $page_title = 'Verifikasi Dokumen';
         require 'app/views/admin/verifikasi.php';
         break;
 
@@ -121,6 +124,7 @@ switch ($act) {
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin') header("Location: login");
         $users = get_all_users($koneksi);
         $roles = get_all_roles($koneksi);
+        $page_title = 'Manajemen Pengguna';
         require 'app/views/admin/users.php';
         break;
 
@@ -135,6 +139,7 @@ switch ($act) {
     case 'data_role':
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin') header("Location: login");
         $roles = get_all_roles($koneksi);
+        $page_title = 'Manajemen Role';
         require 'app/views/admin/roles.php';
         break;
     case 'simpan_role':
@@ -148,12 +153,14 @@ switch ($act) {
     case 'laporan':
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin') header("Location: login");
         $laporan = get_rekap_laporan($koneksi);
+        $page_title = 'Laporan Rekapitulasi';
         require 'app/views/admin/laporan.php';
         break;
 
     // --- PROFILE USER ---
     case 'profile':
         if (!isset($_SESSION['user'])) header("Location: login");
+        $page_title = 'Profil Saya';
         require 'app/views/profile.php';
         break;
     case 'update_profile':

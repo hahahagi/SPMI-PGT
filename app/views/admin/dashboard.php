@@ -1,8 +1,8 @@
 <?php require 'app/views/layouts/header.php'; ?>
 
 <!-- STATS CARDS -->
-<div class="row mb-4">
-    <div class="col-md-3">
+<div class="row mb-4 g-3">
+    <div class="col-12 col-sm-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100 border-start border-4 border-primary">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100 border-start border-4 border-info">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100 border-start border-4 border-warning">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-md-3">
         <div class="card border-0 shadow-sm p-3 h-100 border-start border-4 border-danger">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
     <h4 class="fw-bold mb-0">Kelola Permintaan Dokumen</h4>
     <button class="btn btn-primary-dark" data-bs-toggle="modal" data-bs-target="#modalTambah">+ Buat Permintaan</button>
 </div>
@@ -88,22 +88,24 @@
                         ?>
                     </td>
                     <td>
-                        <a href="verifikasi/<?= $row['id_permintaan'] ?>" class="btn btn-sm btn-outline-primary">
-                            <i class="bi bi-eye"></i> Periksa
-                        </a>
-                        <button class="btn btn-sm btn-outline-warning"
-                            onclick="editPermintaan(this)"
-                            data-id="<?= $row['id_permintaan'] ?>"
-                            data-judul="<?= htmlspecialchars($row['judul']) ?>"
-                            data-deskripsi="<?= htmlspecialchars($row['deskripsi']) ?>"
-                            data-tujuan="<?= $row['tujuan_role'] ?>"
-                            data-deadline="<?= $row['tanggal_deadline'] ?>"
-                            data-bs-toggle="modal" data-bs-target="#modalEdit">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                        <a href="hapus_permintaan/<?= $row['id_permintaan'] ?>" class="btn btn-sm btn-outline-danger" onclick="confirmDelete(event, this.href)">
-                            <i class="bi bi-trash"></i>
-                        </a>
+                        <div class="d-flex align-items-center gap-1">
+                            <a href="verifikasi/<?= $row['id_permintaan'] ?>" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i> Periksa
+                            </a>
+                            <button class="btn btn-sm btn-outline-warning"
+                                onclick="editPermintaan(this)"
+                                data-id="<?= $row['id_permintaan'] ?>"
+                                data-judul="<?= htmlspecialchars($row['judul']) ?>"
+                                data-deskripsi="<?= htmlspecialchars($row['deskripsi']) ?>"
+                                data-tujuan="<?= $row['tujuan_role'] ?>"
+                                data-deadline="<?= $row['tanggal_deadline'] ?>"
+                                data-bs-toggle="modal" data-bs-target="#modalEdit">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <a href="hapus_permintaan/<?= $row['id_permintaan'] ?>" class="btn btn-sm btn-outline-danger" onclick="confirmDelete(event, this.href)">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             <?php endforeach; ?>

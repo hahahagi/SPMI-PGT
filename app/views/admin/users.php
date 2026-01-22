@@ -25,7 +25,7 @@
                     <td><?= $no++ ?></td>
                     <td class="fw-bold">
                         <div class="d-flex align-items-center">
-                            <div class="bg-light rounded-circle border d-flex align-items-center justify-content-center me-2" style="width:35px; height:35px;">
+                            <div class="bg-light rounded-circle border d-flex align-items-center justify-content-center me-2 flex-shrink-0" style="width:35px; height:35px;">
                                 <i class="bi bi-person-fill text-secondary"></i>
                             </div>
                             <?= $u['nama_lengkap'] ?>

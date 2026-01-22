@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>SPMI Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= isset($page_title) ? $page_title . ' - SPMI Poltek GT' : 'SPMI Dashboard' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -47,6 +48,22 @@
             background: rgba(255, 255, 255, 0.05);
             color: #FFC107 !important;
         }
+
+        /* Sidebar Styling */
+        @media (min-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 70px;
+                /* Height of navbar */
+                bottom: 0;
+                left: 0;
+                z-index: 100;
+                padding: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                /* Scrollable contents if viewport is shorter than content. */
+            }
+        }
     </style>
 </head>
 
@@ -54,9 +71,9 @@
 
     <nav class="navbar navbar-custom fixed-top px-4 d-flex justify-content-between shadow-sm">
         <div class="fw-bold d-flex align-items-center">
-            <img src="https://poltek-gt.ac.id/wp-content/uploads/2024/01/LOGO-FIX-BANGET-1-1-300x300.webp" height="50" class="me-2"> SPMI SYSTEM
+            <img src="https://poltek-gt.ac.id/wp-content/uploads/2024/01/LOGO-FIX-BANGET-1-1-300x300.webp" height="50" class="me-2"> SPMI POLTEK-GT
         </div>
-        <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+        <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -76,5 +93,5 @@
 
             <?php require 'app/views/layouts/sidebar.php'; ?>
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-                <div class="container-fluid">
+            <main class="col-md-9 ms-sm-auto col-lg-10 p-0 d-flex flex-column" style="min-height: calc(100vh - 70px); background: #f4f6f8;">
+                <div class="container-fluid px-md-4 py-4 flex-grow-1">

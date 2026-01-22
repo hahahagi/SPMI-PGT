@@ -1,5 +1,9 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse" style="min-height: 100vh; box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);">
-    <div class="position-sticky pt-4 px-2">
+<nav id="sidebarMenu" class="sidebar col-md-3 col-lg-2 bg-dark offcanvas-md offcanvas-start" tabindex="-1" style="box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);">
+    <div class="offcanvas-header d-md-none border-bottom border-secondary">
+        <h5 class="offcanvas-title text-white" id="sidebarMenuLabel">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column pt-3 px-2">
 
         <div class="px-3 mb-2">
             <p class="text-uppercase text-light fw-bold mb-0" style="font-size: 0.65rem; letter-spacing: 1px;">Menu Utama</p>

@@ -13,10 +13,10 @@
         html {
             height: 100%;
             font-family: 'Poppins', sans-serif;
+            overflow: hidden;
         }
 
         .bg-image {
-            /* LINK GAMBAR YANG KAMU MINTA */
             background-image: url('https://poltek-gt.ac.id/wp-content/uploads/2025/10/kp2sh2klr8xqzw1itoty-1024x415.webp');
             background-size: cover;
             background-position: center;
@@ -73,12 +73,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5 d-flex align-items-center justify-content-center bg-white">
-                <div class="login-wrap">
+            <div class="col-lg-5 d-flex flex-column align-items-center justify-content-between bg-white h-100 p-0">
+
+                <!-- Gambar Gedung (Mobile Only) -->
+                <div class="d-lg-none w-100 position-relative overflow-hidden" style="height: 35vh; min-height: 200px;">
+                    <div style="background-image: url('https://poltek-gt.ac.id/wp-content/uploads/2025/10/kp2sh2klr8xqzw1itoty-1024x415.webp'); background-size: cover; background-position: center; width: 100%; height: 100%; transform: scale(1.1);"></div>
+                </div>
+
+                <div class="login-wrap mx-auto flex-grow-1 d-flex flex-column justify-content-center">
+
                     <div class="mb-4 text-center">
-                        <img src="https://poltek-gt.ac.id/wp-content/uploads/2024/01/LOGO-FIX-BANGET-1-1-300x300.webp" alt="Logo Poltek GT" height="160" class="mb-3">
-                        <h3 class="fw-bold">Selamat Datang</h3>
-                        <p class="text-muted">Silakan login menggunakan akun Anda.</p>
+                        <img src="https://poltek-gt.ac.id/wp-content/uploads/2024/01/LOGO-FIX-BANGET-1-1-300x300.webp" alt="Logo Poltek GT" height="100" class="mb-3">
+                        <h3 class="fw-bold fs-4">Selamat Datang</h3>
+                        <p class="text-muted small">Silakan login menggunakan akun Anda.</p>
                     </div>
                     <?php if (isset($error)): ?>
                         <div class="alert alert-danger py-2 small"><?= $error ?></div>
@@ -97,10 +104,10 @@
                                 </span>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-login w-100 rounded-3">MASUK SEKARANG</button>
+                        <button type="submit" class="btn btn-login w-100 rounded-3 shadow-sm">MASUK SEKARANG</button>
                     </form>
-                    <div class="text-center mt-4 text-muted small">&copy; 2026 Unit Penjaminan Mutu</div>
                 </div>
+                <div class="text-center pb-3 text-muted small w-100">&copy; 2026 Unit Penjaminan Mutu</div>
             </div>
         </div>
     </div>
