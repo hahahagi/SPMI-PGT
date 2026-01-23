@@ -16,7 +16,7 @@
 
             <hr>
 
-            <form action="index.php?act=update_profile" method="POST">
+            <form action="<?= $base_path ?>update_profile" method="POST">
                 <div class="mb-3">
                     <label class="form-label small fw-bold text-muted">Nama Lengkap</label>
                     <input type="text" name="nama" class="form-control" value="<?= $_SESSION['user']['nama_lengkap'] ?>" required>

@@ -15,7 +15,7 @@
                 <?php $act = $act ?? 'dashboard';
                 $isActive = ($act == 'dashboard'); ?>
                 <a class="nav-link rounded-2 d-flex align-items-center <?= $isActive ? 'bg-warning text-dark fw-bold shadow-sm' : 'text-white-50' ?>"
-                    href="dashboard" style="padding: 10px 15px; transition: all 0.2s;">
+                    href="<?= $base_path ?>dashboard" style="padding: 10px 15px; transition: all 0.2s;">
                     <i class="bi bi-grid-fill me-3 <?= $isActive ? '' : 'text-secondary' ?>"></i>
                     <span>Dashboard</span>
                 </a>
@@ -32,7 +32,7 @@
                 <li class="nav-item">
                     <?php $isActive = (isset($act) && $act == 'data_user'); ?>
                     <a class="nav-link rounded-2 d-flex align-items-center <?= $isActive ? 'bg-warning text-dark fw-bold shadow-sm' : 'text-white-50' ?>"
-                        href="data_user" style="padding: 10px 15px; transition: all 0.2s;">
+                        href="<?= $base_path ?>data_user" style="padding: 10px 15px; transition: all 0.2s;">
                         <i class="bi bi-people-fill me-3 <?= $isActive ? '' : 'text-secondary' ?>"></i>
                         <span>Data Pengguna</span>
                     </a>
@@ -40,7 +40,7 @@
                 <li class="nav-item">
                     <?php $isActive = (isset($act) && $act == 'data_role'); ?>
                     <a class="nav-link rounded-2 d-flex align-items-center <?= $isActive ? 'bg-warning text-dark fw-bold shadow-sm' : 'text-white-50' ?>"
-                        href="data_role" style="padding: 10px 15px; transition: all 0.2s;">
+                        href="<?= $base_path ?>data_role" style="padding: 10px 15px; transition: all 0.2s;">
                         <i class="bi bi-shield-lock-fill me-3 <?= $isActive ? '' : 'text-secondary' ?>"></i>
                         <span>Manajemen Role</span>
                     </a>
@@ -48,7 +48,7 @@
                 <li class="nav-item">
                     <?php $isActive = (isset($act) && $act == 'laporan'); ?>
                     <a class="nav-link rounded-2 d-flex align-items-center <?= $isActive ? 'bg-warning text-dark fw-bold shadow-sm' : 'text-white-50' ?>"
-                        href="laporan" style="padding: 10px 15px; transition: all 0.2s;">
+                        href="<?= $base_path ?>laporan" style="padding: 10px 15px; transition: all 0.2s;">
                         <i class="bi bi-file-earmark-bar-graph-fill me-3 <?= $isActive ? '' : 'text-secondary' ?>"></i>
                         <span>Laporan Rekap</span>
                     </a>
@@ -65,13 +65,13 @@
             <li class="nav-item">
                 <?php $isActive = (isset($act) && $act == 'profile'); ?>
                 <a class="nav-link rounded-2 d-flex align-items-center <?= $isActive ? 'bg-warning text-dark fw-bold shadow-sm' : 'text-white-50' ?>"
-                    href="profile" style="padding: 10px 15px; transition: all 0.2s;">
+                    href="<?= $base_path ?>profile" style="padding: 10px 15px; transition: all 0.2s;">
                     <i class="bi bi-person-circle me-3 <?= $isActive ? '' : 'text-secondary' ?>"></i>
                     <span>Profil Saya</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-danger rounded-2 d-flex align-items-center" href="logout" style="padding: 10px 15px; transition: 0.2s;" onclick="confirmLogout(event, this.href)">
+                <a class="nav-link text-danger rounded-2 d-flex align-items-center" href="<?= $base_path ?>logout" style="padding: 10px 15px; transition: 0.2s;" onclick="confirmLogout(event, this.href)">
                     <i class="bi bi-box-arrow-left me-3"></i>
                     <span>Keluar Aplikasi</span>
                 </a>

@@ -135,13 +135,13 @@
                             <i class='text-muted small'>Belum ada file.</i>
                         <?php else: ?>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-sm small bg-white mb-0 table-datatable">
+                                <table class="table table-bordered table-sm small bg-white mb-0 table-datatable w-100">
                                     <thead class="table-light">
                                         <tr>
-                                            <th>Judul Dokumen</th>
-                                            <th>File</th>
-                                            <th>Status</th>
-                                            <th class="text-center" style="width:50px">Aksi</th>
+                                            <th style="width: 35%;">Judul Dokumen</th>
+                                            <th style="width: 30%;">File</th>
+                                            <th style="width: 25%;">Status</th>
+                                            <th class="text-center" style="width: 10%;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -149,9 +149,14 @@
                                             <tr>
                                                 <td><?= htmlspecialchars(!empty($f['judul']) ? $f['judul'] : 'Dokumen') ?></td>
                                                 <td>
-                                                    <a href="#" onclick="previewFile('serve_file?file=<?= $f['file_path'] ?>&mode=inline', '<?= $f['file_path'] ?>'); return false;" class="text-decoration-none">
-                                                        <?= $f['file_path'] ?>
-                                                    </a>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <a href="#" onclick="previewFile('serve_file?file=<?= urlencode($f['file_path']) ?>&mode=inline', '<?= htmlspecialchars($f['file_path'], ENT_QUOTES) ?>'); return false;" class="text-decoration-none text-truncate" title="Preview" style="max-width: 200px;">
+                                                            <?= $f['file_path'] ?>
+                                                        </a>
+                                                        <a href="serve_file?file=<?= urlencode($f['file_path']) ?>&mode=download" class="text-secondary" title="Download">
+                                                            <i class="bi bi-download"></i>
+                                                        </a>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <span class="badge bg-<?= $f['status_verifikasi'] == 'diterima' ? 'success' : ($f['status_verifikasi'] == 'revisi' ? 'danger' : 'warning') ?>">
@@ -165,9 +170,19 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <?php if ($f['status_verifikasi'] != 'diterima'): ?>
-                                                        <a href="hapus_file/<?= $f['id_pengumpulan'] ?>" class="btn btn-sm btn-outline-danger py-0" onclick="confirmDelete(event, this.href)">
-                                                            <i class="bi bi-trash"></i>
-                                                        </a>
+                                                        <?php if ($f['status_verifikasi'] == 'revisi'): ?>
+                                                            <form action="<?= $base_path ?>reupload" method="POST" enctype="multipart/form-data" class="d-inline">
+                                                                <input type="hidden" name="id_pengumpulan" value="<?= $f['id_pengumpulan'] ?>">
+                                                                <input type="file" name="berkas" class="d-none" id="reupload_<?= $f['id_pengumpulan'] ?>" onchange="this.form.submit()">
+                                                                <button type="button" class="btn btn-sm btn-outline-warning py-0" onclick="document.getElementById('reupload_<?= $f['id_pengumpulan'] ?>').click()" title="Upload Ulang">
+                                                                    <i class="bi bi-arrow-repeat"></i>
+                                                                </button>
+                                                            </form>
+                                                        <?php else: ?>
+                                                            <a href="<?= $base_path ?>hapus_file/<?= $f['id_pengumpulan'] ?>" class="btn btn-sm btn-outline-danger py-0" onclick="confirmDelete(event, this.href)">
+                                                                <i class="bi bi-trash"></i>
+                                                            </a>
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -179,7 +194,7 @@
                     </div>
 
                     <!-- UPLOAD FORM -->
-                    <form action="upload" method="POST" enctype="multipart/form-data">
+                    <form action="<?= $base_path ?>upload" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="id_permintaan" value="<?= $t['id_permintaan'] ?>">
                         <label class="form-label small fw-bold">Upload Dokumen (Bisa Banyak)</label>
 
@@ -210,6 +225,24 @@
 <?php endforeach; ?>
 <?php require 'app/views/layouts/footer.php'; ?>
 <script>
+    $(document).ready(function() {
+        // Fix DataTables column width in Modals
+        $(document).on('shown.bs.modal', '.modal', function() {
+            $(this).find('.table-datatable').DataTable().columns.adjust().draw();
+        });
+
+        // Auto Open Modal from URL param (e.g. after upload/delete)
+        const urlParams = new URLSearchParams(window.location.search);
+        const openModalId = urlParams.get('open_modal');
+        if (openModalId) {
+            const modalEl = document.getElementById('modal' + openModalId);
+            if (modalEl) {
+                const modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        }
+    });
+
     function addUploadRow(id) {
         const container = document.getElementById('upload-container-' + id);
         const newRow = document.createElement('div');

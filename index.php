@@ -5,6 +5,7 @@ require_once 'app/controllers/MainController.php';
 
 // URL Routing Logic
 $base_path = '/spmi/';
+define('BASE_URL', $base_path);
 $request_uri = $_SERVER['REQUEST_URI'];
 $path = parse_url($request_uri, PHP_URL_PATH);
 
@@ -114,6 +115,9 @@ switch ($act) {
     // --- USER: UPLOAD & HAPUS ---
     case 'upload':
         act_upload($koneksi);
+        break;
+    case 'reupload':
+        act_reupload($koneksi);
         break;
     case 'hapus_file':
         act_hapus_file($koneksi);

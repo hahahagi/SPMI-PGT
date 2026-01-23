@@ -78,11 +78,11 @@
         </button>
 
         <div class="d-none d-md-flex align-items-center gap-3">
-            <div class="text-end lh-1">
-                <div class="fw-bold small"><?= $_SESSION['user']['nama_lengkap'] ?? 'Guest' ?></div>
+            <div class="text-end">
+                <div class="fw-bold small mb-1"><?= $_SESSION['user']['nama_lengkap'] ?? 'Guest' ?></div>
                 <div class="text-muted" style="font-size:0.7rem;"><?= strtoupper($_SESSION['user']['role'] ?? '') ?></div>
             </div>
-            <a href="logout" class="btn btn-sm btn-outline-danger" title="Logout" onclick="confirmLogout(event, this.href)">
+            <a href="<?= $base_path ?>logout" class="btn btn-sm btn-outline-danger" title="Logout" onclick="confirmLogout(event, this.href)">
                 <i class="bi bi-box-arrow-right"></i>
             </a>
         </div>

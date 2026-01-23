@@ -43,7 +43,7 @@
                     </td>
                     <td>
                         <?php if ($u['id_user'] != $_SESSION['user']['id_user']): ?>
-                            <a href="index.php?act=hapus_user&id=<?= $u['id_user'] ?>"
+                            <a href="<?= $base_path ?>hapus_user/<?= $u['id_user'] ?>"
                                 class="btn btn-sm btn-outline-danger"
                                 onclick="confirmDelete(event, this.href)">
                                 <i class="bi bi-trash"></i>
@@ -60,7 +60,7 @@
 
 <div class="modal fade" id="modalTambahUser">
     <div class="modal-dialog">
-        <form class="modal-content" action="index.php?act=simpan_user" method="POST">
+        <form class="modal-content" action="<?= $base_path ?>simpan_user" method="POST">
             <div class="modal-header">
                 <h5 class="modal-title fw-bold">Tambah Pengguna Baru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>

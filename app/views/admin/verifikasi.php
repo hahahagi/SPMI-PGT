@@ -1,7 +1,7 @@
 <?php require 'app/views/layouts/header.php'; ?>
 
 <div class="mb-4">
-    <a href="dashboard" class="btn btn-light border btn-sm shadow-sm">
+    <a href="<?= $base_path ?>dashboard" class="btn btn-light border btn-sm shadow-sm">
         <i class="bi bi-arrow-left me-2"></i>Kembali ke Dashboard
     </a>
 </div>
@@ -60,8 +60,11 @@
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a href="#" onclick="previewFile('serve_file?file=<?= $f['file_path'] ?>&mode=inline', '<?= $f['file_path'] ?>'); return false;" class="btn btn-outline-primary" title="Lihat">
+                                    <a href="#" onclick="previewFile('<?= $base_path ?>serve_file?file=<?= urlencode($f['file_path']) ?>&mode=inline', '<?= htmlspecialchars($f['file_path'], ENT_QUOTES) ?>'); return false;" class="btn btn-outline-primary" title="Lihat">
                                         <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a href="<?= $base_path ?>serve_file?file=<?= urlencode($f['file_path']) ?>&mode=download" class="btn btn-outline-success" title="Download">
+                                        <i class="bi bi-download"></i>
                                     </a>
                                 </div>
                                 <div class="small text-muted mt-1 text-truncate" style="max-width: 120px;" title="<?= $f['file_path'] ?>">
@@ -84,7 +87,7 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <form action="proses_validasi" method="POST">
+                                <form action="<?= $base_path ?>proses_validasi" method="POST">
                                     <input type="hidden" name="id_pengumpulan" value="<?= $f['id_pengumpulan'] ?>">
                                     <input type="hidden" name="id_permintaan" value="<?= $info['id_permintaan'] ?>">
 

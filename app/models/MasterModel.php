@@ -73,6 +73,11 @@ function get_file_detail($koneksi, $id)
     return mysqli_fetch_assoc($q);
 }
 
+function update_file_reupload($koneksi, $id, $path)
+{
+    return mysqli_query($koneksi, "UPDATE pengumpulan SET file_path='$path', status_verifikasi='menunggu' WHERE id_pengumpulan='$id'");
+}
+
 // --- ADMIN: VERIFIKASI ---
 function get_detail_verifikasi($koneksi, $id)
 {

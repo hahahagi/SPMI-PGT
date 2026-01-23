@@ -83,7 +83,7 @@
                 <div class="login-wrap mx-auto flex-grow-1 d-flex flex-column justify-content-center">
 
                     <div class="mb-4 text-center">
-                        <img src="https://poltek-gt.ac.id/wp-content/uploads/2024/01/LOGO-FIX-BANGET-1-1-300x300.webp" alt="Logo Poltek GT" height="100" class="mb-3">
+                        <img src="https://poltek-gt.ac.id/wp-content/uploads/2024/01/LOGO-FIX-BANGET-1-1-300x300.webp" alt="Logo Poltek GT" height="130" class="mb-3">
                         <h3 class="fw-bold fs-4">Selamat Datang</h3>
                         <p class="text-muted small">Silakan login menggunakan akun Anda.</p>
                     </div>

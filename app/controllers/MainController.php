@@ -10,7 +10,7 @@ function do_login($koneksi)
 
     if ($data && $data['password'] == $pass) {
         $_SESSION['user'] = $data;
-        header("Location: dashboard?status=login_sukses");
+        header("Location: " . BASE_URL . "dashboard?status=login_sukses");
     } else {
         $error = "Username atau Password Salah!";
         require 'app/views/auth/login.php';
@@ -20,13 +20,13 @@ function do_login($koneksi)
 function act_simpan_permintaan($koneksi)
 {
     tambah_permintaan($koneksi, $_POST['judul'], $_POST['deskripsi'], $_POST['tujuan'], $_POST['deadline']);
-    header("Location: dashboard?status=sukses");
+    header("Location: " . BASE_URL . "dashboard?status=sukses");
 }
 
 function act_update_permintaan($koneksi)
 {
     update_permintaan_db($koneksi, $_POST['id_permintaan'], $_POST['judul'], $_POST['deskripsi'], $_POST['tujuan'], $_POST['deadline']);
-    header("Location: dashboard?status=update_sukses");
+    header("Location: " . BASE_URL . "dashboard?status=update_sukses");
 }
 
 function act_upload($koneksi)
@@ -54,7 +54,7 @@ function act_upload($koneksi)
             }
         }
     }
-    header("Location: dashboard?status=upload_sukses&open_modal=" . $id_permintaan);
+    header("Location: " . BASE_URL . "dashboard?status=upload_sukses&open_modal=" . $id_permintaan);
 }
 
 function act_hapus_file($koneksi)
@@ -63,16 +63,41 @@ function act_hapus_file($koneksi)
     if ($file) {
         if (file_exists("uploads/" . $file['file_path'])) unlink("uploads/" . $file['file_path']);
         hapus_file_db($koneksi, $_GET['id']);
-        header("Location: dashboard?status=hapus_sukses&open_modal=" . $file['id_permintaan']);
+        header("Location: " . BASE_URL . "dashboard?status=hapus_sukses&open_modal=" . $file['id_permintaan']);
     } else {
-        header("Location: dashboard");
+        header("Location: " . BASE_URL . "dashboard");
+    }
+}
+
+function act_reupload($koneksi)
+{
+    $id_pengumpulan = $_POST['id_pengumpulan'];
+    $file_info = get_file_detail($koneksi, $id_pengumpulan);
+
+    if ($file_info && isset($_FILES['berkas']) && $_FILES['berkas']['error'] == 0) {
+        // Hapus file lama fisik
+        if (file_exists("uploads/" . $file_info['file_path'])) {
+            unlink("uploads/" . $file_info['file_path']);
+        }
+
+        // Upload file baru
+        $name = $_FILES['berkas']['name'];
+        $newName = uniqid() . "_" . $name;
+        if (move_uploaded_file($_FILES['berkas']['tmp_name'], "uploads/" . $newName)) {
+            update_file_reupload($koneksi, $id_pengumpulan, $newName);
+            header("Location: " . BASE_URL . "dashboard?status=upload_sukses&open_modal=" . $file_info['id_permintaan']);
+        } else {
+            header("Location: " . BASE_URL . "dashboard?status=gagal&msg=Gagal upload file baru");
+        }
+    } else {
+        header("Location: " . BASE_URL . "dashboard?status=gagal&msg=File tidak valid");
     }
 }
 
 function act_validasi($koneksi)
 {
     update_verifikasi($koneksi, $_POST['id_pengumpulan'], $_POST['status'], $_POST['catatan']);
-    header("Location: verifikasi/" . $_POST['id_permintaan'] . "?status=sukses");
+    header("Location: " . BASE_URL . "verifikasi/" . $_POST['id_permintaan'] . "?status=sukses");
 }
 
 // --- USER MANAGEMENT ---
@@ -81,36 +106,36 @@ function act_simpan_user($koneksi)
     // Cek username kembar dulu (Validasi sederhana)
     $cek = cek_login($koneksi, $_POST['username']);
     if ($cek) {
-        header("Location: data_user?status=gagal_username");
+        header("Location: " . BASE_URL . "data_user?status=gagal_username");
         exit;
     }
 
     tambah_user($koneksi, $_POST['nama'], $_POST['username'], $_POST['password'], $_POST['role']);
-    header("Location: data_user?status=sukses");
+    header("Location: " . BASE_URL . "data_user?status=sukses");
 }
 
 function act_hapus_user($koneksi)
 {
     // Cegah hapus diri sendiri
     if ($_GET['id'] == $_SESSION['user']['id_user']) {
-        echo "<script>alert('Dilarang menghapus akun sendiri!'); window.location='data_user';</script>";
+        echo "<script>alert('Dilarang menghapus akun sendiri!'); window.location='" . BASE_URL . "data_user';</script>";
         return;
     }
 
     hapus_user_db($koneksi, $_GET['id']);
-    header("Location: data_user?status=hapus_sukses");
+    header("Location: " . BASE_URL . "data_user?status=hapus_sukses");
 }
 
 function act_simpan_role($koneksi)
 {
     tambah_role($koneksi, $_POST['nama_role']);
-    header("Location: data_role?status=sukses");
+    header("Location: " . BASE_URL . "data_role?status=sukses");
 }
 
 function act_hapus_role($koneksi)
 {
     hapus_role_db($koneksi, $_GET['id']);
-    header("Location: data_role?status=hapus_sukses");
+    header("Location: " . BASE_URL . "data_role?status=hapus_sukses");
 }
 
 function act_update_profile($koneksi)
@@ -124,7 +149,7 @@ function act_update_profile($koneksi)
     if ($username != $_SESSION['user']['username']) {
         $cek = cek_login($koneksi, $username);
         if ($cek) {
-            header("Location: profile?status=gagal_username");
+            header("Location: " . BASE_URL . "profile?status=gagal_username");
             exit;
         }
     }
@@ -134,9 +159,9 @@ function act_update_profile($koneksi)
         $_SESSION['user']['nama_lengkap'] = $nama;
         $_SESSION['user']['username'] = $username;
 
-        header("Location: profile?status=sukses");
+        header("Location: " . BASE_URL . "profile?status=sukses");
     } else {
-        header("Location: profile?status=gagal");
+        header("Location: " . BASE_URL . "profile?status=gagal");
     }
 }
 

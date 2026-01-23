@@ -122,7 +122,9 @@
 
         .main-content,
         body,
-        html {
+        html,
+        main,
+        .container-fluid {
             background: #fff !important;
             font-size: 11pt;
             -webkit-print-color-adjust: exact;

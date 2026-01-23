@@ -89,7 +89,7 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center gap-1">
-                            <a href="verifikasi/<?= $row['id_permintaan'] ?>" class="btn btn-sm btn-outline-primary">
+                            <a href="<?= $base_path ?>verifikasi/<?= $row['id_permintaan'] ?>" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-eye"></i> Periksa
                             </a>
                             <button class="btn btn-sm btn-outline-warning"
@@ -102,7 +102,7 @@
                                 data-bs-toggle="modal" data-bs-target="#modalEdit">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <a href="hapus_permintaan/<?= $row['id_permintaan'] ?>" class="btn btn-sm btn-outline-danger" onclick="confirmDelete(event, this.href)">
+                            <a href="<?= $base_path ?>hapus_permintaan/<?= $row['id_permintaan'] ?>" class="btn btn-sm btn-outline-danger" onclick="confirmDelete(event, this.href)">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </div>
@@ -115,7 +115,7 @@
 
 <div class="modal fade" id="modalTambah">
     <div class="modal-dialog">
-        <form class="modal-content" action="simpan_permintaan" method="POST">
+        <form class="modal-content" action="<?= $base_path ?>simpan_permintaan" method="POST">
             <div class="modal-header">
                 <h5 class="modal-title">Buat Permintaan</h5><button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
@@ -138,7 +138,7 @@
 
 <div class="modal fade" id="modalEdit">
     <div class="modal-dialog">
-        <form class="modal-content" action="update_permintaan" method="POST">
+        <form class="modal-content" action="<?= $base_path ?>update_permintaan" method="POST">
             <input type="hidden" name="id_permintaan" id="edit_id">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Permintaan</h5><button class="btn-close" data-bs-dismiss="modal"></button>

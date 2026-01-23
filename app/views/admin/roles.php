@@ -30,7 +30,7 @@
                         </td>
                         <td>
                             <?php if ($r['nama_role'] != 'admin'): ?>
-                                <a href="index.php?act=hapus_role&id=<?= $r['id_role'] ?>"
+                                <a href="<?= $base_path ?>hapus_role/<?= $r['id_role'] ?>"
                                     class="btn btn-sm btn-outline-danger"
                                     onclick="confirmDelete(event, this.href)">
                                     <i class="bi bi-trash"></i>
@@ -48,7 +48,7 @@
 
 <div class="modal fade" id="modalTambahRole">
     <div class="modal-dialog">
-        <form class="modal-content" action="index.php?act=simpan_role" method="POST">
+        <form class="modal-content" action="<?= $base_path ?>simpan_role" method="POST">
             <div class="modal-header">
                 <h5 class="modal-title fw-bold">Tambah Role Baru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
